@@ -47,7 +47,7 @@ void generation(){
 }
 void display(){
 	for(int i=1;i<=20;i++){
-		for(int j=0;j<=80;j++){
+		for(int j=0;j<=81;j++){
 			cout<<world[i][j];
 		}
 		cout<<endl;	
@@ -59,9 +59,8 @@ void init(){
 	fin.open("map.txt",ios::in);
     for(int i=1;i<=20;i++){
         for(int j=1;j<=81;j++){
-            char temp;
-            fin>>temp;
-            if(temp != '#') world[i][j]=temp;
+            fin.get(world[i][j]);
+            
         }
     }
     fin.close();
@@ -93,10 +92,10 @@ int main(){
 	system("Pause");
 	system("cls");
 	while(1){
+        system("cls");
 		generation();
 		display();
-        double i=clock();
-        while(clock()-i==100);
+        system("Pause");
 	}
 	return 0;
 }
