@@ -1,22 +1,22 @@
 #include <bits/stdc++.h>
 using namespace std;
 char world[22][82];
-char _world[22][82];
-const int top=1;
-const int bottom=20;
-const int left=1;
-const int right=80;
+char World[22][82];
+const int t=1;
+const int b=20;
+const int l=1;
+const int r=80;
 int g=0;
 int around(int i,int j){
 	int cnt=0;
-	if(i>=top && j>=left) cnt+=_world[i-1][j-1]=='*';
-	if(i>=top) cnt+=_world[i-1][j]=='*';
-	if(i>=top && j<=right) cnt+=_world[i-1][j+1]=='*';
-	if(j>=left) cnt+=_world[i][j-1]=='*';
-	if(j<=right) cnt+=_world[i][j+1]=='*';
-	if(i<=bottom && j>=left) cnt+=_world[i+1][j-1]=='*';
-	if(i<=bottom) cnt+=_world[i+1][j]=='*';
-	if(i<=bottom && j<=right) cnt+=_world[i+1][j+1]=='*';
+	if(i>=t && j>=l) cnt+=world[i-1][j-1]=='*';
+	if(i>=t) cnt+=world[i-1][j]=='*';
+	if(i>=t && j<=r) cnt+=world[i-1][j+1]=='*';
+	if(j>=l) cnt+=world[i][j-1]=='*';
+	if(j<=r) cnt+=world[i][j+1]=='*';
+	if(i<=b && j>=l) cnt+=world[i+1][j-1]=='*';
+	if(i<=b) cnt+=world[i+1][j]=='*';
+	if(i<=b && j<=r) cnt+=world[i+1][j+1]=='*';
 	return cnt;
 }
 void full(int i,int j){
@@ -25,24 +25,23 @@ void full(int i,int j){
 }
 void empty(int i,int j){
 	int n=around(i,j);
-	if (n=3) world[i][j]='*';
+	if (n==3) world[i][j]='*';
 }
 void generation(){
-	for(int i=0;i<20;i++){
-		strcpy(_world[i],world[i]);
+	for(int i=1;i<=20;i++){
+		for(int j=1;j<=80;j++) {
+            World[i][j]=world[i][j];
+        }
 	}
-	for(int i=0;i<20;i++){
-		for(int j=0;i<80;j++){
-			if(_world[i][i]==' '){
+	for(int i=1;i<=20;i++){
+		for(int j=1;j<=80;j++){
+			if(World[i][i]==' '){
 				empty(i,j);
 			}
-			else if(_world[i][i]=='*'){
+			else if(World[i][i]=='*'){
 				full(i,j);
 			}
 		}
-	}
-	for(int i=0;i<20;i++){
-		strcpy(world[i],_world[i]);
 	}
 	g++;
 }
@@ -56,8 +55,16 @@ void display(){
 	cout<<"generation: "<<g<<endl;
 }
 void init(){
-	istream mapIn;
-	mapIn.open()
+	ifstream fin;
+	fin.open("map.txt",ios::in);
+    for(int i=1;i<=20;i++){
+        for(int j=1;j<=81;j++){
+            char temp;
+            fin>>temp;
+            if(temp != '#') world[i][j]=temp;
+        }
+    }
+    fin.close();
 }
 int main(){
 //  freopen(".in","r",stdin);
@@ -88,9 +95,9 @@ int main(){
 	while(1){
 		generation();
 		display();
-		
+        double i=clock();
+        while(clock()-i==100);
 	}
-	
 	return 0;
 }
 
