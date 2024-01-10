@@ -46,22 +46,20 @@ void generation(){
 	g++;
 }
 void display(){
-    cout<<"################################################################################"<<endl;
+    
 	for(int i=1;i<=20;i++){
 		for(int j=0;j<=81;j++){
 			cout<<world[i][j];
 		}
 		cout<<endl;	
 	}
-    cout<<"################################################################################"<<endl;
 	cout<<"generation: "<<g<<endl;
 }
 void init(){
 
     for(int i=1;i<=20;i++){
         for(int j=1;j<=80;j++){
-            srand(time(nullptr)*rand()
-            );
+            srand(time(0));
             bool temp=rand()%2;
             if(temp) world[i][j]='*';
         }
@@ -83,7 +81,7 @@ int main(){
 	cout<<"       *   *             *     *     *    *        *    *                       "<<endl;
 	cout<<"       *   *********  ****     ****  *    *        *    ********                "<<endl;
 	cout<<"       *           *  *           *  *    *        *           *                "<<endl;
-	cout<<"*************  *************  ******        *************                "<<endl;
+	cout<<"       *************  *************  ******        *************                "<<endl;
 	cout<<"                                                                                "<<endl;
 	cout<<"                                                                                "<<endl;
 	cout<<"                                                                                "<<endl;
