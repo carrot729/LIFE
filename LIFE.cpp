@@ -46,24 +46,26 @@ void generation(){
 	g++;
 }
 void display(){
+    cout<<"################################################################################"<<endl;
 	for(int i=1;i<=20;i++){
 		for(int j=0;j<=81;j++){
 			cout<<world[i][j];
 		}
 		cout<<endl;	
 	}
+    cout<<"################################################################################"<<endl;
 	cout<<"generation: "<<g<<endl;
 }
 void init(){
-	ifstream fin;
-	fin.open("map.txt",ios::in);
+
     for(int i=1;i<=20;i++){
-        for(int j=1;j<=81;j++){
-            fin.get(world[i][j]);
-            
+        for(int j=1;j<=80;j++){
+            srand(time(nullptr)*rand()
+            );
+            bool temp=rand()%2;
+            if(temp) world[i][j]='*';
         }
     }
-    fin.close();
 }
 int main(){
 //  freopen(".in","r",stdin);
@@ -81,7 +83,7 @@ int main(){
 	cout<<"       *   *             *     *     *    *        *    *                       "<<endl;
 	cout<<"       *   *********  ****     ****  *    *        *    ********                "<<endl;
 	cout<<"       *           *  *           *  *    *        *           *                "<<endl;
-	cout<<"		  *************  *************  ******        *************                "<<endl;
+	cout<<"*************  *************  ******        *************                "<<endl;
 	cout<<"                                                                                "<<endl;
 	cout<<"                                                                                "<<endl;
 	cout<<"                                                                                "<<endl;
@@ -91,6 +93,7 @@ int main(){
 	cout<<"********************************************************************************"<<endl;
 	system("Pause");
 	system("cls");
+    init();
 	while(1){
         system("cls");
 		generation();
